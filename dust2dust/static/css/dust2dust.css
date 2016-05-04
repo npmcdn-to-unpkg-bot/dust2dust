@@ -1,0 +1,49 @@
+body {
+    margin-top: 20px;
+    background-color: #ddd;
+}
+
+.dust-grid {
+    padding: 10px;
+    /*background-color: #e74c3c;*/
+}
+
+.dust-inner-grid {
+    border-radius: 6px;
+    border: 1px solid black;
+    margin: 5px 15px 5px 15px;
+    padding: 10px;
+    background-color: #1abc9c;
+}
+
+.dust-inner-grid ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.dust-inner-grid h1 {
+    color: white;
+}
+
+.dust-inner-grid hr {
+    margin-top: 0.6em;
+    margin-bottom: 1em;
+}
+
+.dust-weather-hour {
+    color: white;
+}
+
+#dust-weather {
+    margin: 2em 0.2em 2em 0.4em;
+}
+
+.col-xs-4 {
+    width: 31%;
+}
+
+.dust-inner-grid .progress {
+    height: 8px;
+    margin-bottom: 4px;
+    border-radius: 2px;
+}
