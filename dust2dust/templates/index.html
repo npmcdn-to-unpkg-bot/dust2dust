@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>dust2dust</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <link href="{{url_for('static', filename='css/dust2dust.css')}}" rel="stylesheet" />
+    <meta name="author" content="@kimkkiruk">
+  </head>
+  <body>
+    <div class="container-fluid grid" data-masonry='{ "itemSelector": ".dust-grid" }'>
+      <div class="col-md-4 dust-grid">
+        <div class="row">
+          <div class="dust-inner-grid">
+            <center>
+              <h1>
+              <span id="dust-current-time"></span>
+              </h1>
+    
+              <i class="fa fa-clock-o"></i>
+              Last update: {{ payload.now }}
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 dust-grid">
+        <div class="row">
+          <div class="dust-inner-grid">
+            {{ payload }}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 dust-grid">
+        <div class="row">
+          <div class="dust-inner-grid">
+            <div class="row">
+              <center>
+                <canvas id="dust-weather" width="128" height="128" data-icon="{{ payload.weather_icon }}"></canvas>
+                <br>
+                {{payload.weather}}
+              </center>
+            </div>
+            <div class="row">
+              <center>
+              <h4>{{payload.temp}}℃ / {{payload.wet}}%</h4>
+            </center>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 dust-grid">
+        <div class="row">
+          <div class="dust-inner-grid">
+            <ul>
+              <li>
+                <h1>
+                <i class="fa fa-fw fa-wifi" aria-hidden="true"></i> 567MB / 1024MB
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                  </div>
+                </div>
+                </h1>
+              </li>
+              <li>
+                <h1>
+                  <i class="fa fa-fw fa-mobile-phone" aria-hidden="true"></i> 1,160원</li>
+                </h1>
+              </li>
+            </ul>
+            <div class="row">
+              <div class="dust-inner-grid">
+                <div id="myfirstchart" style="height: 150px;"></div>
+              </div>
+            </div>
+            <center>
+              최근 5일간 사용량
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 dust-grid">
+        <div class="row">
+          <div class="dust-inner-grid">
+            <center>
+              <i class="fa fa-industry" aria-hidden="true"></i> PM10
+              <h1>37</h1>
+              <h5>μg/m³</h5>
+              <i class="fa fa-sort-up"></i> 10% up
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 dust-grid">
+        <div class="row">
+          <div class="dust-inner-grid">
+            <center>
+              <i class="fa fa-industry" aria-hidden="true"></i> PM2.5
+              <h1>17</h1>
+              <h5>μg/m³</h5>
+              <i class="fa fa-sort-down"></i> 11% down
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 dust-grid">
+        <div class="row">
+          <div class="dust-inner-grid">
+            dust cell
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 dust-grid">
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> <!-- morris dependency -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script src="{{url_for('static', filename='lib/momentjs/moment-with-locales.min.js')}}"></script>
+    <script src="{{url_for('static', filename='lib/skycons/skycons.js')}}"></script>
+    <script src="{{url_for('static', filename='js/dust2dust.js')}}"></script>
+  </body>
+</html>
+
+<!--
+  vim:et:ts=2:sts=2:sw=2:ft=htmldjango
+-->
