@@ -43,7 +43,8 @@ body {
 }
 
 .dust-inner-grid .progress {
-    height: 8px;
-    margin-bottom: 4px;
+    height: 1px;
+    margin-top: 8px;
+    margin-bottom: 0px;
     border-radius: 2px;
 }
