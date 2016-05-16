@@ -69,28 +69,28 @@
           <div class="dust-inner-grid">
             <ul>
               <li>
-                <h2>
+                <h3>
                   <i class="fa fa-fw fa-wifi" aria-hidden="true"></i> {{payload.iji.used_free_call}}
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="{{ free_call_used }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ free_call_used }}%;">
                     </div>
                   </div>
-                </h2>
+                </h3>
               </li>
               <li>
-                <h2>
+                <h3>
                   <i class="fa fa-fw fa-mobile-phone" aria-hidden="true"></i> {{ payload.iji.current_total_charge }}</li>
-                </h2>
+                </h3>
               </li>
             </ul>
-            <div class="row">
-              <div class="dust-inner-grid">
-                <div id="ijichart" style="height: 100px;"></div>
-              </div>
-            </div>
-            <center>
-              최근 5일간 사용량
-            </center>
+            <!--<div class="row">-->
+              <!--<div class="dust-inner-grid">-->
+                <!--<div id="ijichart" style="height: 100px;"></div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<center>-->
+              <!--최근 5일간 사용량-->
+            <!--</center>-->
           </div>
         </div>
       </div>
@@ -104,12 +104,14 @@
                   <h1>{{ payload.dust.pm10['1h'] }}</h1>
                   <h5>㎍/㎥</h5>
                   <i class="fa fa-clock"></i> {{ payload.dust.pm10['24h'] }}㎍/㎥ (24h)
+                  <h5>수지 측정소</h5>
                 </div>
                 <div class="col-xs-6">
                   <i class="fa fa-asterisk" aria-hidden="true"></i> PM2.5
                   <h1>{{ payload.dust.pm25['1h'] }}</h1>
                   <h5>㎍/㎥</h5>
                   <i class="fa fa-clock"></i> {{ payload.dust.pm25['24h'] }}㎍/㎥ (24h)
+                  <h5>백현 측정소</h5>
                 </div>
               </center>
             </div>

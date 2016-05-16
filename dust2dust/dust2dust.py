@@ -42,33 +42,34 @@ async def get_dust_data():
     start = timeit.default_timer()
 
     dust_url = 'http://m.airkorea.or.kr/sub_new/sub41.jsp'
-
-    cookies = {
-            'isGps': 'N',
-            'station': '131120' }
+    cookies_suzi = { 'isGps': 'N', 'station': '131412' } # TODO: 코드 중복 제거
+    cookies_baekhyun = { 'isGps': 'N', 'station': '131120' }
 
     try:
-        result = await loop.run_in_executor(None, functools.partial(requests.get, dust_url, cookies=cookies))
+        result_suzi = await loop.run_in_executor(None, functools.partial(requests.get, dust_url, cookies=cookies_suzi))
+        result_baekhyun = await loop.run_in_executor(None, functools.partial(requests.get, dust_url, cookies=cookies_baekhyun))
     except requests.exceptions.ConnectionError as e:
         log.error('connection error to AirKorea')
         return {'pm10': {'24h': '0', '1h': '0'}, 'pm25': {'24h': '0', '1h': '0'}}
 
-    if not result.ok:
+    if not result_suzi.ok or not result_baekhyun.ok:
+        log.error('failed to get results')
         return {'pm10': {'24h': '0', '1h': '0'}, 'pm25': {'24h': '0', '1h': '0'}}
 
-    soup = BeautifulSoup(result.text, 'html.parser')
+    soup_suzi = BeautifulSoup(result_suzi.text, 'html.parser')
+    soup_baekhyun = BeautifulSoup(result_baekhyun.text, 'html.parser')
 
-    tag_pm10 = soup.find('div', id='detailContent') \
-                   .findAll('table')[1] \
-                   .findAll('tr')[1] \
-                   .findAll('td')[1] \
-                   .div.text
+    tag_pm10 = soup_suzi.find('div', id='detailContent') \
+                        .findAll('table')[1] \
+                        .findAll('tr')[1] \
+                        .findAll('td')[1] \
+                        .div.text
 
-    tag_pm25 = soup.find('div', id='detailContent') \
-                    .findAll('table')[1] \
-                    .findAll('tr')[2] \
-                    .findAll('td')[1] \
-                    .div.text
+    tag_pm25 = soup_baekhyun.find('div', id='detailContent') \
+                            .findAll('table')[1] \
+                            .findAll('tr')[2] \
+                            .findAll('td')[1] \
+                            .div.text
     dust_pm10 = dict(zip(('24h', '1h'), tag_pm10.replace('(1h)', '').replace(' ㎍/㎥', '').split('(24h)')))
     dust_pm25 = dict(zip(('24h', '1h'), tag_pm25.replace('(1h)', '').replace(' ㎍/㎥', '').split('(24h)')))
 
