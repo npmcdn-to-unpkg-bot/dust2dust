@@ -19,10 +19,10 @@ from config import *
 
 app = Flask(__name__)
 
-async def get_ijimobile_data():
+async def get_ijimobile_data(user):
     loop = asyncio.get_event_loop()
     start = timeit.default_timer()
-    ijimobile_url = 'http://ijistance.herokuapp.com/report/kil9'
+    ijimobile_url = 'http://ijistance.herokuapp.com/report/{}'.format(user)
     try:
         resp = await loop.run_in_executor(None, requests.get, ijimobile_url)
     except requests.exceptions.ConnectionError as e:
@@ -116,7 +116,8 @@ async def get_weather_data():
 async def fetch_data():
     tasks = [
         asyncio.Task(get_weather_data()),
-        asyncio.Task(get_ijimobile_data()),
+        asyncio.Task(get_ijimobile_data('kil9')),
+        asyncio.Task(get_ijimobile_data('totokki')),
         asyncio.Task(get_dust_data()) ]
 
     return await asyncio.gather(*tasks)
@@ -129,11 +130,12 @@ def main():
     asyncio.set_event_loop(loop)
 
     results = loop.run_until_complete(fetch_data())
-    weather_payload, ijimobile_payload, dust_payload = results
+    weather_payload, ijimobile_kil9_payload, ijimobile_totokki_payload, dust_payload = results
 
     payload = {
         'weather': weather_payload,
-        'iji': ijimobile_payload,
+        'iji_kil9': ijimobile_kil9_payload,
+        'iji_totokki': ijimobile_totokki_payload,
         'dust': dust_payload
     }
 

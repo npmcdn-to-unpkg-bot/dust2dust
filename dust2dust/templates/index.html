@@ -61,16 +61,17 @@
           </div>
         </div>
       </div>
-      {% set used_free_call = payload.iji.used_free_call|replace(',', '')|replace(' KB', '')|int %}
-      {% set free_call = payload.iji.free_call|replace(',', '')|replace(' KB', '')|int %}
+      {% set used_free_call = payload.iji_kil9.used_free_call|replace(',', '')|replace(' KB', '')|int %}
+      {% set free_call = payload.iji_kil9.free_call|replace(',', '')|replace(' KB', '')|int %}
       {% set free_call_used = used_free_call / free_call * 100.0 %}
       <div class="col-xs-4 dust-grid">
         <div class="row">
           <div class="dust-inner-grid">
             <ul>
+              <li><h4>돌곰</h4></li>
               <li>
                 <h3>
-                  <i class="fa fa-fw fa-wifi" aria-hidden="true"></i> {{payload.iji.used_free_call}}
+                  <i class="fa fa-fw fa-wifi" aria-hidden="true"></i> {{payload.iji_kil9.used_free_call}}
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="{{ free_call_used }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ free_call_used }}%;">
                     </div>
@@ -79,18 +80,36 @@
               </li>
               <li>
                 <h3>
-                  <i class="fa fa-fw fa-mobile-phone" aria-hidden="true"></i> {{ payload.iji.current_total_charge }}</li>
+                  <i class="fa fa-fw fa-mobile-phone" aria-hidden="true"></i> {{ payload.iji_kil9.current_total_charge }}</li>
                 </h3>
               </li>
             </ul>
-            <!--<div class="row">-->
-              <!--<div class="dust-inner-grid">-->
-                <!--<div id="ijichart" style="height: 100px;"></div>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<center>-->
-              <!--최근 5일간 사용량-->
-            <!--</center>-->
+          </div>
+        </div>
+      </div>
+      {% set used_free_call = payload.iji_totokki.used_free_call|replace(',', '')|replace(' KB', '')|int %}
+      {% set free_call = payload.iji_totokki.free_call|replace(',', '')|replace(' KB', '')|int %}
+      {% set free_call_used = used_free_call / free_call * 100.0 %}
+      <div class="col-xs-4 dust-grid">
+        <div class="row">
+          <div class="dust-inner-grid">
+            <ul>
+              <li><h4>토토</h4></li>
+              <li>
+                <h3>
+                  <i class="fa fa-fw fa-wifi" aria-hidden="true"></i> {{payload.iji_totokki.used_free_call}}
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ free_call_used }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ free_call_used }}%;">
+                    </div>
+                  </div>
+                </h3>
+              </li>
+              <li>
+                <h3>
+                  <i class="fa fa-fw fa-mobile-phone" aria-hidden="true"></i> {{ payload.iji_totokki.current_total_charge }}</li>
+                </h3>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
